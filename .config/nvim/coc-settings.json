@@ -1,0 +1,18 @@
+{
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": true, 
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "typescript",
+    "typescriptreact",
+    "lua"
+  ],
+
+  "tsserver.formatOnType": false,
+  "Lua.diagnostics.globals": ["vim"]
+}
+
