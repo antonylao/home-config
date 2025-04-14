@@ -133,12 +133,18 @@ bind "set menu-complete-display-prefix on"
 # initialization: 
 # - create a directory .git-home in $HOME 
 # - `git init --bare $HOME/.git-home`
-# - add a $HOME/.gitignore that ignores everything for safety ?
+# - add a $HOME/.gitignore that ignores everything. When tracking new file, disable it temporarily
 
 # use githm like the git command
 alias githm='/usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
-#githm config status.showUntrackedFiles normal 
-#
+githm config status.showUntrackedFiles normal 
+
+#end git
+
+#sourcing scripting files
+source $HOME/.bourne-apparix
+#end sourcing scripting files
+
 export PATH="$PATH:/opt/nvim/"
 
 export EDITOR=nvim
@@ -148,5 +154,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-source $HOME/.bourne-apparix
+
 
