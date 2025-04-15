@@ -78,7 +78,8 @@ require("lazy").setup({
 
       -- doesnt seem to work
       -- Use <c-j> to trigger snippets
-      keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
+      -- DOESN'T WORK
+      -- keyset("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
       -- Use <c-space> to trigger completion
       keyset("i", "<c-space>", "coc#refresh()", { silent = true, expr = true })
 

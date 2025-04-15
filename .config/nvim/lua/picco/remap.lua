@@ -28,6 +28,22 @@ vim.keymap.set("n", "Q", "<nop>")
 -- C-z actually puts vim to the background. command fd to return to vim
 -- vim.keymap.set("n", "<C-z>", "<nop>")
 
+-- Insert mode: movement keybindings --
+-- use bash keymaps for moving backwards and forward, delete everything after
+vim.keymap.set("i", "<C-b>", "<C-o>h")
+vim.keymap.set("i", "<C-f>", "<C-o>l")
+-- NB: <C-k> was used by default to make digraphs, but I don't use it
+vim.keymap.set("i", "<C-k>", "<C-o>D")
+-- NB: delete everything before <C-u> already by default
+vim.keymap.set("i", "<C-a>", "<C-o>_")
+vim.keymap.set("i", "<C-e>", "<C-o>$")
+-- other keybindings (not in bash)
+-- <C-d> will delete a line (and move up one line)
+vim.keymap.set("i", "<C-d>", "<C-o>dd")
+-- <C-t> indents, <C-d> unindents
+-- <C-j> / <C-i> enters newline from position
+
+
 -- BEGIN: for JS
 --
 -- mz sets marker, `z goes back to marker
