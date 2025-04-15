@@ -82,6 +82,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
+
 fi
 
 # colored GCC warnings and errors
@@ -91,6 +92,8 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias mv='mv -i'
+alias rm='rm -i'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -126,6 +129,11 @@ bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"
 bind "set menu-complete-display-prefix on"
 
+# any command starting with a space will not be saved in history
+HISTCONTROL=ignorespace
+# prepend commands in history by date and time
+HISTTIMEFORMAT="%F %T  "
+
 #end bash config
 
 #git  
@@ -142,13 +150,13 @@ githm config status.showUntrackedFiles normal
 #end git
 
 #sourcing scripting files
-source $HOME/.bourne-apparix
+# source $HOME/.bourne-apparix
 #end sourcing scripting files
 
 export PATH="$PATH:/opt/nvim/"
 
 export EDITOR=nvim
-export VISUAL="$EDITOR"
+export VISUAL=$EDITOR
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
