@@ -150,7 +150,7 @@ githm config status.showUntrackedFiles normal
 #end git
 
 #sourcing scripting files
-# source $HOME/.bourne-apparix
+source $HOME/.bourne-apparix
 #end sourcing scripting files
 
 export PATH="$PATH:/opt/nvim/"
