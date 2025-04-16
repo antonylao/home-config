@@ -38,9 +38,10 @@ vim.keymap.set("i", "<C-k>", "<C-o>D")
 vim.keymap.set("i", "<C-a>", "<C-o>_")
 vim.keymap.set("i", "<C-e>", "<C-o>$")
 -- other keybindings (not in bash)
--- <C-d> will delete a line (and move up one line)
-vim.keymap.set("i", "<C-d>", "<C-o>dd")
+-- TODO: delete character to the right / in the square
+vim.keymap.set("i", "<C-l>", "<C-o>x")
 -- <C-t> indents, <C-d> unindents
+-- NB: in bash, <C-d> delete right character
 -- <C-j> / <C-i> enters newline from position
 
 
