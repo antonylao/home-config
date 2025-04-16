@@ -92,8 +92,10 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+# NB: do not rely on those! always write the full command  
 alias mv='mv -i'
 alias rm='rm -i'
+alias cp='cp -i'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
