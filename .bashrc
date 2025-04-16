@@ -136,6 +136,8 @@ HISTCONTROL=ignorespace
 # prepend commands in history by date and time
 HISTTIMEFORMAT="%F %T  "
 
+# Allow <C-s> for incremental search forward (instead of freeze)
+stty -ixon -ixoff
 #end bash config
 
 #git  
