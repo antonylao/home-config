@@ -9,10 +9,12 @@
     "json",
     "typescript",
     "typescriptreact",
-    "lua"
+    "lua",
+    "sh"
   ],
 
   "tsserver.formatOnType": false,
-  "Lua.diagnostics.globals": ["vim"]
+  "Lua.diagnostics.globals": ["vim"],
+  "bashIde.logLevel": "error",
 }
 
