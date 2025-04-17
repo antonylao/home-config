@@ -25,6 +25,7 @@ require("lazy").setup({
 
   -- syntax highlighting
   { import = 'picco.plugins.treesitter' },
+
   --cloak
   { import = 'picco.plugins.cloak' },
 
@@ -43,6 +44,7 @@ require("lazy").setup({
   --undotree
   {
     "mbbill/undotree",
+    -- can't replace config..end by `opts = {..}`
     config = function()
       vim.keymap.set("n", "<leader>z", vim.cmd.UndotreeToggle)
     end

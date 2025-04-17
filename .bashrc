@@ -92,10 +92,18 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+# BEGIN aliases for preventing overwrite
 # NB: do not rely on those! always write the full command  
+# NB2: to run command without the added options: use $(which <cmd>) ..
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
+alias tar='tar --backup=numbered -k' 
+# END aliases for preventing overwrite
+
+# prevent override of files with output redirection. When you actually want it, use >| instead of >
+# test: for which command does this work?
+set -o noclobber
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
