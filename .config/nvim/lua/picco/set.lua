@@ -44,3 +44,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 300
 
 vim.opt.colorcolumn = "80"
+
+-- remove some errors from set of characters present in files
+vim.opt.modeline = false

@@ -8,10 +8,6 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
 # append to the history file, don't overwrite it
 shopt -s histappend
 
@@ -92,18 +88,10 @@ fi
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
-# BEGIN aliases for preventing overwrite
 # NB: do not rely on those! always write the full command  
-# NB2: to run command without the added options: use $(which <cmd>) ..
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
-alias tar='tar --backup=numbered -k' 
-# END aliases for preventing overwrite
-
-# prevent override of files with output redirection. When you actually want it, use >| instead of >
-# test: for which command does this work?
-set -o noclobber
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -157,12 +145,17 @@ stty -ixon -ixoff
 
 # use githm like the git command
 alias githm='/usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
+# view markdown file in the lynx browser (running on terminal)
+# cannot use alias because we use positional parameters
+rmd () {
+  pandoc "$1" | lynx -stdin
+}
 githm config status.showUntrackedFiles normal 
 
 #end git
 
 #sourcing scripting files
-source $HOME/.bourne-apparix
+source "${HOME}"/.bourne-apparix
 #end sourcing scripting files
 
 export PATH="$PATH:/opt/nvim/"
