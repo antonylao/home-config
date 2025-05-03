@@ -26,22 +26,9 @@ require("lazy").setup({
   -- syntax highlighting
   { import = 'picco.plugins.treesitter' },
 
-  "lewis6991/gitsigns.nvim",
+  --"lewis6991/gitsigns.nvim",
   -- status line
-  { import = 'picco.plugins.lualine'},
-
-  -- status line: alternative (try to add coc diagnostics)
-  --{
-  --  'feline-nvim/feline.nvim',
-  --  dependencies = {
-  --    "nvim-tree/nvim-web-devicons",
-  --    "lewis6991/gitsigns.nvim"
-  --  },
-  --  config = function()
-  --    require('feline').setup()
-  --    --require('feline').winbar.setup()
-  --  end
-  --},
+  { import = 'picco.plugins.lualine' },
 
   --cloak
   { import = 'picco.plugins.cloak' },

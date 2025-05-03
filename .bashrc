@@ -89,7 +89,10 @@ git_prompt() {
         local state=$(git_status)
         local color=$(git_color $state)
         # Now output the actual code to insert the branch and status
-        echo -e "\x01$color\x02[$branch$state]\x01\033[00m\x02"  # last bit resets color
+        # original: show colors
+        #echo -e "\x01$color\x02[$branch$state]\x01\033[00m\x02"  # last bit resets color
+        # without colors
+        echo -e "[$branch$state]" 
     fi
 }
 # end add git prompt
@@ -122,11 +125,16 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(git_prompt)\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:$(git_prompt)\[\033[01;34m\]\w\[\033[00m\] \$ '
+    #shortening it
+    PS1='${debian_chroot:+($debian_chroot)}$(git_prompt)\[\033[01;34m\]\w\[\033[00m\] \$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
+
+# add emoji to prompt to know if there is an error
+PS1="\`if [ \$? = 0 ]; then echo \[\e[33m\]^_^\[\e[0m\]; else echo \[\e[31m\]O_O\[\e[0m\]; fi\` ${PS1}"
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -190,6 +198,9 @@ fi
 
 #bash config
 
+# only shows up to 4 directories in the prompt
+PROMPT_DIRTRIM=4
+
 # enables cyclic autocompletion AND list files
 bind "TAB:menu-complete"
 bind "set show-all-if-ambiguous on"
@@ -208,8 +219,8 @@ stty -ixon -ixoff
 # githm 
 # store files from $HOME in a git repo without it being recognized as a parent repo
 # initialization: 
-# - create a directory .git-home in $HOME 
-# - `git init --bare $HOME/.git-home`
+# - create a directory .home.git in $HOME 
+# - `git init --bare $HOME/.home.git`
 # - add a $HOME/.gitignore that ignores everything. When tracking new file, disable it temporarily
 
 # use githm like the git command
@@ -229,7 +240,8 @@ bms () {
     echo "\033[0;96m-----------------------" && \
     echo {} && \
     echo "\033[0m------------------------" && \
-    echo && git status 2> /dev/null'
+    echo && git status 2> /dev/null' && \
+    exit 0
 }
 
 #sourcing scripting files
