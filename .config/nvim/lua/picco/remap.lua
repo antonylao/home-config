@@ -63,6 +63,7 @@ vim.keymap.set(
   "<leader>l",
   "mz\"ayoconsole.log(String.fromCodePoint(0x1F516) + /<Esc>:r! echo %:t<CR>kJ A ~ <Esc>\"apA: /.source)<CR>console.log(<Esc>\"apA)<Esc>`z"
 )
+
 -- vim.keymap.set("v", "<leader>l", "mz\"ayoconsole.log(\"<Esc>:r! echo %:t<CR>kJ A ~ <Esc>\"apA: \" + <Esc>\"apA)<Esc>`z")
 -- INSERT.END
 
