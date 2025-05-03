@@ -217,6 +217,8 @@ HISTTIMEFORMAT="%F %T  "
 stty -ixon -ixoff
 #end bash config
 
+export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*, dist/*}"'
+
 # githm 
 # store files from $HOME in a git repo without it being recognized as a parent repo
 # initialization: 
