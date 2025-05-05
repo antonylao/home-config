@@ -206,6 +206,8 @@ set colored-stats on
 set visible-stats on
 # enables cyclic autocompletion AND list files
 bind "TAB:menu-complete"
+# Shift-Tab cycle backwards
+bind '"\e[Z": menu-complete-backward'
 bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"
 # off: get the first suggestion. on: get common prefix among suggestions
