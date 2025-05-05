@@ -202,11 +202,16 @@ fi
 # only shows up to 4 directories in the prompt
 PROMPT_DIRTRIM=4
 
+set colored-stats on
+set visible-stats on
 # enables cyclic autocompletion AND list files
 bind "TAB:menu-complete"
 bind "set show-all-if-ambiguous on"
 bind "set completion-ignore-case on"
-bind "set menu-complete-display-prefix on"
+# off: get the first suggestion. on: get common prefix among suggestions
+bind "set menu-complete-display-prefix off"
+bind "set colored-stats on"
+bind "set colored-completion-prefix on"
 
 # any command starting with a space will not be saved in history
 HISTCONTROL=ignorespace
@@ -217,6 +222,7 @@ HISTTIMEFORMAT="%F %T  "
 stty -ixon -ixoff
 #end bash config
 
+#set fzf 
 export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*, dist/*}"'
 
 # githm 
@@ -250,6 +256,8 @@ bms () {
 #sourcing scripting files
 # shellcheck disable=SC1094
 source "${HOME}"/.bourne-apparix
+#fzf from https://github.com/junegunn/fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 #end sourcing scripting files
 
 export PATH="$PATH:/opt/nvim/"
@@ -264,7 +272,4 @@ export BROWSER='/mnt/c/Windows/explorer.exe'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-
-
 
