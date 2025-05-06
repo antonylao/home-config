@@ -220,6 +220,8 @@ HISTCONTROL=ignorespace
 # prepend commands in history by date and time
 HISTTIMEFORMAT="%F %T  "
 
+
+
 # Allow <C-s> for incremental search forward (instead of freeze)
 stty -ixon -ixoff
 #end bash config
@@ -260,12 +262,18 @@ bms () {
 source "${HOME}"/.bourne-apparix
 #fzf from https://github.com/junegunn/fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source "${HOME}"/.bash-completion 2>/dev/null
+_bcpp --defaults 
 #end sourcing scripting files
+
 
 export PATH="$PATH:/opt/nvim/"
 
 export EDITOR=nvim
 export VISUAL=$EDITOR
+
+# change prompt based on starship config
+# eval "$(starship init bash)"
 
 #for using xdg-args to open a browser
 #export BROWSER=lynx
