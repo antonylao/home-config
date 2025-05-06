@@ -1,10 +1,12 @@
 vim.g.mapleader = " "
 
---* keep fat cursor but change color on insert mode
-vim.api.nvim_set_hl(0, "iCursor", { fg = "white", bg = "orange" })
-vim.api.nvim_set_hl(0, "Cursor", { fg = "black", bg = "white" })
-vim.opt.guicursor = "i:iCursor,n-v-c:Cursor"
 
+-- keep fat cursor but change color on insert mode
+vim.api.nvim_set_hl(0, "iCursor", { fg = "white", bg = "darkmagenta" })
+vim.api.nvim_set_hl(0, "Cursor", { fg = "black", bg = "white" })
+vim.api.nvim_set_hl(0, "cCursor", { fg = "white", bg = "red" })
+
+vim.opt.guicursor = "i:iCursor,r-o:cCursor,n-v:Cursor"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -14,9 +16,14 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+--misc.
 vim.opt.wrap = true
-
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 vim.opt.signcolumn = 'yes'
+
+--remove upper tabs showing buffers
+vim.opt.showtabline = 0
 
 -- for undotree
 vim.opt.swapfile = false
@@ -38,7 +45,7 @@ vim.opt.termguicolors = true
 
 vim.opt.scrolloff = 8
 
--- append the @ char to filenames ??
+-- allow @ and - char for filenames in nvim
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 300

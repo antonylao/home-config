@@ -14,15 +14,39 @@ vim.opt.rtp:prepend(lazypath)
 -- local pathOfThisFile = ...
 -- local folderOfThisFile = (...):match("(.-)[^%.]+$")
 require("lazy").setup({
+  change_detection = {
+    -- automatically check for config file changes and reload the ui
+    enabled = false, -- default: true
+    notify = false,  -- get a notification when changes are found
+  },
+
   --apl keybindings
-  'https://github.com/PyGamer0/vim-apl',
+  -- 'https://github.com/PyGamer0/vim-apl',
+
   -- plenary
   "nvim-lua/plenary.nvim",
 
   -- file navigation plugins
   { import = 'picco.plugins.telescope' },
-  { import = 'picco.plugins.harpoon' },
+  --TODO: antony ~ 2025-05-07: test grapple to replace harpoon (saves buffer cursor)
+  --{ import = 'picco.plugins.harpoon' },
+  {
+    "cbochs/grapple.nvim",
+    opts = {
+      scope = "git", -- also try out "git_branch"
+      icons = false, -- setting to "true" requires "nvim-web-devicons"
+      status = true,
+    },
+    keys = {
+      { "<c-s>",      "<cmd>Grapple toggle<cr>",         desc = "Tag a file" },
+      { "<c-h>",      "<cmd>Grapple toggle_tags<cr>",    desc = "Toggle tags menu" },
 
+      { "<leader>é",  "<cmd>Grapple select index=1<cr>", desc = "Select first tag" },
+      { "<leader>\"", "<cmd>Grapple select index=2<cr>", desc = "Select second tag" },
+      { "<leader>'",  "<cmd>Grapple select index=3<cr>", desc = "Select third tag" },
+      { "<leader>(",  "<cmd>Grapple select index=4<cr>", desc = "Select fourth tag" },
+    },
+  },
   -- syntax highlighting
   { import = 'picco.plugins.treesitter' },
 
@@ -36,13 +60,22 @@ require("lazy").setup({
   --keep the context (function, case, if) on top
   --disable if slow: `:ContextToggle`
   {
-    'wellle/context.vim',
+    "hedyhli/outline.nvim",
     config = function()
-      vim.g.context_enabled = 0
-      vim.keymap.set("n", "<leader>fc", vim.cmd.ContextToggle)
-    end
-  },
+      -- Example mapping to toggle outline
+      vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>",
+        { desc = "Toggle Outline" })
 
+      require("outline").setup {
+        -- Your setup opts here (leave empty to use defaults)
+        symbols = { filter = { 'Boolean', 'String', 'Variable', exclude = true }, },
+        outline_window = {
+          width = 50,
+          relative_width = true,
+        },
+      }
+    end,
+  },
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -64,11 +97,12 @@ require("lazy").setup({
     "tpope/vim-fugitive",
     config = function()
       --gs: get status
-      vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+      vim.keymap.set("n", "<leader>gg", vim.cmd.Git)
     end
   },
 
   --coc for LSP
-  { import = 'picco/plugins/coc' },
+  --{ import = 'picco/plugins/coc' },
+  { import = 'picco/plugins/lsp' },
 
 })
