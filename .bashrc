@@ -266,7 +266,6 @@ source "${HOME}"/.bash-completion 2>/dev/null
 _bcpp --defaults 
 #end sourcing scripting files
 
-
 export PATH="$PATH:/opt/nvim/"
 
 export EDITOR=nvim
