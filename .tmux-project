@@ -1,0 +1,68 @@
+#!/bin/bash
+# semi-auto script to start tmux with all relevant windows there, and start the client and server
+#
+# inspired by https://github.com/chicks-net/chicks-home/blob/master/bin/start_tmux#L32C1-L37C4
+# use: go to the directory where /back and /front are located. `~/.tmux_project name-session .`
+# $1 is the directory where /back and /front are located
+
+origin_dir=$PWD
+echo "origin"
+echo $origin_dir
+
+function get_dir_name() {
+  cd $1/back
+  cd ..
+  echo $(basename $PWD)
+}
+
+name=$(get_dir_name $1)
+back=$1/back
+command_back="npm run start:dev"
+front=$1/front
+command_front="npm run dev"
+
+open_main_session=0
+
+tmux has-session -t "$name" 2>/dev/null
+
+if [ $? -eq 0 ]; then
+  echo "session with name $name already exists."
+  open_main_session=1
+fi
+
+if [ ${open_main_session} -eq 0 ]; then
+  echo "creating main session.."
+  tmux new-session -d -c "$back" -s "$name" # -s: session name -d : don't attach -c: path to start window
+  tmux send-keys "nvim ." enter
+  tmux new-window -c "$back"
+  tmux send-keys "${command_back}" enter
+  tmux neww -c "$front"
+  tmux send-keys "nvim ." enter
+  tmux neww -c "$front"
+  tmux send-keys "${command_front}" enter
+fi
+
+tmux has-session -t "aux" 2>/dev/null
+if [ $? -eq 0 ]; then
+  echo "session aux already exists"
+  tmux attach -t "$name"
+  exit 1
+fi
+
+# auxiliary: notes and config 0: tests 1: bashrc 2: nvim 3: fish 4: notes
+tmux new-session -d -c "/home/antony" -s "aux" -n "tests"
+#bashrc
+tmux new-window -c "/home/antony" -n "bashrc"
+tmux send-keys "nvim .bashrc" enter
+#nvim
+tmux new-window -c "/home/antony/.config/nvim" -n "nvim"
+tmux send-keys "nvim ." enter
+#fish
+tmux new-window -c "/home/antony/.config/fish" -n "fish"
+tmux send-keys "nvim ." enter
+#notes
+tmux new-window -c "/home/antony/perso/notes" -n "notes"
+tmux send-keys "nvim ." enter
+
+# attach to main session
+tmux attach -t "$name"
