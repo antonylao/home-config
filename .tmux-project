@@ -9,13 +9,14 @@ origin_dir=$PWD
 echo "origin"
 echo $origin_dir
 
-function get_dir_name() {
-  cd $1/back
-  cd ..
+function get_execution_dirname() {
+  cd $1
+  cd .
   echo $(basename $PWD)
+  cd $origin_dir
 }
 
-name=$(get_dir_name $1)
+name=$(get_execution_dirname $1)
 back=$1/back
 command_back="npm run start:dev"
 front=$1/front
