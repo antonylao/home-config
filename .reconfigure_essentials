@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# needs user with sudo package
+sudo apt install \
+  git \
+  rsync wget gdebi make cmake glibc-source \
+  fish feh i3 firefox-esr
+
+#explanation of packages
+#rsync: sync different folders
+#glibc-source: needed for neovim 0.11 as of 2025-05-16
+#feh: for images
+#??: for videos
+
+# OPTIONALS: #
+#wine #run exe
+#x11-server-utils #for using xmodmap to remap keys
+
+# CONFIGURE HOME
+source .bashrc
+git clone --bare https://github.com/antonylao/home-config $HOME/.home.git
+
+function githm {
+  /usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME $@
+}
+#backup files that will be replaced by home-config
+mkdir -p .config-backup &&
+  githm checkout 2>&1 | egrep "\s+\." | awk {'print $1'} |
+  xargs -I{} mv {} .config-backup/{}
+
+githm checkout
