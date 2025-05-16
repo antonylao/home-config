@@ -1,14 +1,18 @@
 #!/bin/bash
 
 # needs user with sudo package
+# supposed .home.git created:
+#  git clone --bare https://github.com/antonylao/home-config $HOME/.home.git
 sudo apt install \
-  git \
-  rsync wget gdebi make cmake glibc-source \
-  fish feh i3 firefox-esr
+  git mr \
+  rsync wget curl gdebi make cmake glibc-source fuse xinit \
+  fish feh i3 firefox-esr alacritty
 
 #explanation of packages
+#mr: to run git commands on multiple repos
 #rsync: sync different folders
 #glibc-source: needed for neovim 0.11 as of 2025-05-16
+#fuse: to run appimage
 #feh: for images
 #??: for videos
 
@@ -17,9 +21,6 @@ sudo apt install \
 #x11-server-utils #for using xmodmap to remap keys
 
 # CONFIGURE HOME
-source .bashrc
-git clone --bare https://github.com/antonylao/home-config $HOME/.home.git
-
 function githm {
   /usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME $@
 }
@@ -29,3 +30,10 @@ mkdir -p .config-backup &&
   xargs -I{} mv {} .config-backup/{}
 
 githm checkout
+
+# NVIM 0.11
+mkdir -p $HOME/.local/bin
+wget -P $HOME/.local/bin https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.appimage
+cd $HOME/.local/bin
+chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
+cd $HOME
