@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # needs user with sudo package
-# supposed .home.git created:
-#  git clone --bare https://github.com/antonylao/home-config $HOME/.home.git
+# supposed home-git cloned in $HOME/home-config
+
 sudo apt install \
   git mr \
   rsync wget curl gdebi make cmake glibc-source fuse xinit \
@@ -24,15 +24,10 @@ sudo apt install \
 function githm {
   /usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME $@
 }
-#backup files that will be replaced by home-config
-mkdir -p $HOME/.config-backup
 
-githm checkout
-if [ $? != 0 ]; then
-  githm checkout 2>&1 | egrep "\s+\." | awk {'print $1'} |
-    xargs -I{} mv {} $HOME/.config-backup/{}
-fi
-githm checkout
+git clone --bare https://github.com/antonylao/home-config $HOME/.home.git
+rsync -av $HOME/home-config/{,.[^.]}* $HOME
+rm -rf $HOME/.git $HOME/home-config
 
 # NVIM 0.11
 mkdir -p $HOME/.local/bin/nvim
