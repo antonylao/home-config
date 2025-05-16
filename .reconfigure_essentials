@@ -4,7 +4,7 @@
 # supposed home-git cloned in $HOME/home-config
 
 sudo apt install \
-  git mr \
+  git mr ripgrep \
   rsync wget curl gdebi make cmake glibc-source fuse xinit \
   fish feh i3 firefox-esr alacritty
 
@@ -35,6 +35,8 @@ wget -P $HOME/.local/bin https://github.com/neovim/neovim/releases/download/v0.1
 cd $HOME/.local/bin
 chmod u+x nvim-linux-x86_64.appimage && mv nvim-linux-x86_64.appimage nvim
 cd $HOME
+
+# TODO: install starship, fzf
 
 # END
 rm -rf $HOME/home-config
