@@ -32,8 +32,8 @@ mkdir -p .config-backup &&
 githm checkout
 
 # NVIM 0.11
-mkdir -p $HOME/.local/bin
-wget -P $HOME/.local/bin https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.appimage
+mkdir -p $HOME/.local/bin/nvim
+wget -P $HOME/.local/bin/nvim https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-x86_64.appimage
 cd $HOME/.local/bin
 chmod u+x nvim-linux-x86_64.appimage && ./nvim-linux-x86_64.appimage
 cd $HOME
