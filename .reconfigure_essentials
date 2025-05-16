@@ -25,10 +25,13 @@ function githm {
   /usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME $@
 }
 #backup files that will be replaced by home-config
-mkdir -p .config-backup &&
-  githm checkout 2>&1 | egrep "\s+\." | awk {'print $1'} |
-  xargs -I{} mv {} .config-backup/{}
+mkdir -p $HOME/.config-backup
 
+githm checkout
+if [ $? != 0 ]; then
+  githm checkout 2>&1 | egrep "\s+\." | awk {'print $1'} |
+    xargs -I{} mv {} $HOME/.config-backup/{}
+fi
 githm checkout
 
 # NVIM 0.11
