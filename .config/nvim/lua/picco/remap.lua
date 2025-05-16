@@ -8,19 +8,18 @@ vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")
 --keep cursor at the same place with this command
 vim.keymap.set("n", "J", "mzJ`z")
 
--- keep cursor in middle with middle page jumping
+-- keep cursor in middle
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-f>", "<C-f>zz")
 vim.keymap.set("n", "<C-b>", "<C-b>zz")
-
--- when searching terms, cursors in middle
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+
 -- copy paste clipboard
-vim.keymap.set("n", "<leader>y", "\"+yiw")
-vim.keymap.set("v", "<leader>y", "\"+y")
-vim.keymap.set("n", "<leader>p", "\"+p")
+vim.keymap.set("n", "<leader>y", '"+yiw')
+vim.keymap.set("v", "<leader>y", '"+y')
+vim.keymap.set("n", "<leader>p", '"+p')
 -- Q is bullshit so disable it
 vim.keymap.set("n", "Q", "<nop>")
 -- C-z actually puts vim to the background. command fd to return to vim
@@ -38,7 +37,6 @@ vim.keymap.set("i", "<C-a>", "<C-o>$")
 -- <C-j> enters newline from position
 -- NB: <C-r><buffer-id> paste content of buffer
 
-
 -- FOR JS:
 -- INSERT.SIGNATURE: add date and name (used often when commenting)
 -- ^dg_ delete entire line without trailing whitespaces
@@ -49,18 +47,18 @@ vim.keymap.set("i", "<C-c>", " <Esc>i antony ~ <Esc>mz:pu=strftime('%Y-%m-%d')<C
 -- "ayiw copy into register a the inner word
 -- o inserts on the line below
 -- <CR> is enter
-vim.keymap.set("n", "<leader>l",
-  "mz\"ayiwoconsole.log(String.fromCodePoint(0x1F516) + \"<Esc>:r! echo %:t<CR>kJ A ~ <Esc>\"apa: \")<CR>console.log(<Esc>\"apa)<Esc>`z")
---
---original mapping commented below, this is is under testing
 vim.keymap.set(
-  "v",
-  "<leader>l",
-  "mz\"ayoconsole.log(String.fromCodePoint(0x1F516) + /<Esc>:r! echo %:t<CR>kJ A ~ <Esc>\"apA: /.source)<CR>console.log(<Esc>\"apA)<Esc>`z"
+	"n",
+	"<leader>l",
+	'mz"ayiwoconsole.log(String.fromCodePoint(0x1F516) + "<Esc>:r! echo %:t<CR>kJ A ~ <Esc>"apa: ")<CR>console.log(<Esc>"apa)<Esc>`z'
 )
--- vim.keymap.set("v", "<leader>l", "mz\"ayoconsole.log(\"<Esc>:r! echo %:t<CR>kJ A ~ <Esc>\"apA: \" + <Esc>\"apA)<Esc>`z")
+--
+vim.keymap.set(
+	"v",
+	"<leader>l",
+	'mz"ayoconsole.log(String.fromCodePoint(0x1F516) + /<Esc>:r! echo %:t<CR>kJ A ~ <Esc>"apA: /.source)<CR>console.log(<Esc>"apA)<Esc>`z'
+)
 -- INSERT.END
-
 
 -- insert current file name (not used)
 -- <C-R> (Ctrl + R) insert a register in insert mode

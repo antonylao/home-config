@@ -31,23 +31,62 @@ require("lazy").setup({
 	"nvim-tree/nvim-web-devicons", --symbols for various plugins
 
 	--enhanced motion plugins
+	{ "arnamak/stay-centered.nvim", opts = {} },
 	{ import = "picco.plugins.leap" },
 	{ import = "picco.plugins.treewalker" },
 	{ import = "picco.plugins.surround" },
 
-	--test: highlight chunk
+	--highlight chunk
 	{
 		"shellRaining/hlchunk.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("hlchunk").setup({
-				chunk = { enable = true },
+				chunk = { enable = true, duration = 200, delay = 100 },
 				line_num = { enable = true, use_treesitter = true },
 			})
 		end,
 	},
+	{
+		"gen740/SmoothCursor.nvim",
+		config = function()
+			require("smoothcursor").setup({
+				type = "matrix",
+				intervals = 20,
+				always_redraw = false,
+				--cursor = "⍤",
+				--cursor = "⌶",
+				show_last_positions = "leave",
+			})
+		end,
+	},
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- add any options here
+			override = {
+				["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+				["vim.lsp.util.stylize_markdown"] = true,
+				["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+
+				vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>"),
+			},
+		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		},
+	},
+
 	-- file navigation plugins
+	-- test
 	{ import = "picco.plugins.telescope" },
+	--{ import = "picco.plugins.snacks-picker" },
 	--{ import = 'picco.plugins.harpoon' },
 	{ import = "picco.plugins.grapple" },
 
@@ -64,16 +103,40 @@ require("lazy").setup({
 	--keep the context (function, case, if) on top
 	--disable if slow: `:ContextToggle`
 	{
+		"nvim-treesitter/nvim-treesitter-context",
+		enabled = false,
+		config = function()
+			require("treesitter-context").setup({
+				enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
+				multiwindow = false, -- Enable multiwindow support.
+				max_lines = 3, -- How many lines the window should span. Values <= 0 mean no limit.
+				min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
+				line_numbers = true,
+				multiline_threshold = 20, -- Maximum number of lines to show for a single context
+				trim_scope = "outer", -- Which context lines to discard if `max_lines` is exceeded. Choices: 'inner', 'outer'
+				mode = "cursor", -- Line used to calculate context. Choices: 'cursor', 'topline'
+				-- Separator between context and content. Should be a single character string, like '-'.
+				-- When separator is set, the context will only show up when there are at least 2 lines above cursorline.
+				separator = nil,
+				zindex = 20, -- The Z-index of the context window
+				on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
+			})
+
+			vim.keymap.set("n", "<leader>tc", vim.cmd.TSContextToggle)
+		end,
+	},
+	{
 		"hedyhli/outline.nvim",
 		config = function()
 			-- Example mapping to toggle outline
-			vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
+
+			vim.keymap.set("n", "<C-a>", "<cmd>Outline<CR><C-w><C-h>", { desc = "Toggle Outline" })
 
 			require("outline").setup({
 				-- Your setup opts here (leave empty to use defaults)
 				symbols = { filter = { "Boolean", "String", "Variable", exclude = true } },
 				outline_window = {
-					width = 50,
+					width = 30,
 					relative_width = true,
 				},
 			})

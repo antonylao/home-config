@@ -6,6 +6,12 @@ end
 set -x PATH $PATH /opt/nvim/
 
 set -Ux editor nvim
+ 
+#safer delete by default
+#TODO: test
+abbr mv 'mv -i' 
+abbr rm 'rm -i'
+abbr cp 'cp -i'
 
 #rmd command to view md on terminal
 function rmd 
@@ -25,6 +31,8 @@ set -Ux FZF_DEFAULT_COMMAND 'rg --files --follow --no-ignore-vcs --hidden -g "!{
 # use githm like the git command
 alias githm '/usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
 #end githm
+
+
 
 # aliases for 
 alias d 'bf delete'

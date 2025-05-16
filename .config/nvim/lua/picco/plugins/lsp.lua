@@ -273,11 +273,16 @@ return {
 			end,
 			formatters_by_ft = {
 				lua = { "stylua" },
+				sh = { "shfmt" },
 				-- Conform can also run multiple formatters sequentially
 				-- python = { "isort", "black" },
 				--
 				-- You can use 'stop_after_first' to run the first available formatter from the list
 				-- javascript = { "prettierd", "prettier", stop_after_first = true },
+			},
+			formatters = {
+				--shfmt = { options = { switch_case_indent = true } },
+				shfmt = { prepend_args = { "-ci" } },
 			},
 		},
 	},
@@ -350,7 +355,8 @@ return {
 			completion = {
 				-- By default, you may press `K` to show the documentation.
 				-- Optionally, set `auto_show = true` to show the documentation after a delay.
-				documentation = { auto_show = false, auto_show_delay_ms = 500 },
+				--documentation = { auto_show = false, auto_show_delay_ms = 500 },
+				documentation = { auto_show = false },
 			},
 
 			sources = {
@@ -372,7 +378,7 @@ return {
 			fuzzy = { implementation = "lua" },
 
 			-- Shows a signature help window while you type arguments for a function
-			signature = { enabled = true },
+			signature = { enabled = false },
 		},
 	},
 }
