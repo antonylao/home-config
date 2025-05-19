@@ -2,16 +2,23 @@ if status is-interactive
     # Commands to run in interactive sessions can go here
 end
 
-# add nvim to the end of the path
-set -x PATH $PATH /opt/nvim/
+# disable fish greeting (set it to empty)
+set fish_greeting 
 
-set -Ux editor nvim
+# add nvim to the end of the path
+set -x PATH $PATH /opt/nvim/ $HOME/.local/bin
+
+set -x editor nvim
+set -x visual nvim 
  
 #safer delete by default
 #TODO: test
 abbr mv 'mv -i' 
 abbr rm 'rm -i'
 abbr cp 'cp -i'
+
+#unzip defaults to unzip into a folder
+abbr unzip 'unzip -d ./'
 
 #rmd command to view md on terminal
 function rmd 
@@ -32,17 +39,12 @@ set -Ux FZF_DEFAULT_COMMAND 'rg --files --follow --no-ignore-vcs --hidden -g "!{
 alias githm '/usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
 #end githm
 
-
-
 # aliases for 
 alias d 'bf delete'
 alias g 'bf go'
 alias l 'bf list'
 alias p 'bf print'
 alias s 'bf save'
-
-# needed because last character is not displayed
-set tide_right_prompt_suffix " "
 
 #prompt plugins
 starship init fish | source

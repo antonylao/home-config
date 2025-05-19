@@ -6,19 +6,22 @@
 sudo apt install \
   git mr ripgrep \
   rsync wget curl gdebi make cmake glibc-source fuse xinit \
-  fish feh i3 firefox-esr alacritty
+  fish feh i3 firefox-esr alacritty pulseaudio pactl brightnessctl xprop
 
 #explanation of packages
 #mr: to run git commands on multiple repos
 #rsync: sync different folders
 #glibc-source: needed for neovim 0.11 as of 2025-05-16
 #fuse: to run appimage
+#xprop: to give info about apps (use it to force app to display on a certain workspace)
+#      (use the class)
 #feh: for images
 #??: for videos
 
 # OPTIONALS: #
 #wine #run exe
 #x11-server-utils #for using xmodmap to remap keys
+#xrandr , arandr #for managing monitors
 
 # CONFIGURE HOME
 function githm {

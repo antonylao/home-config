@@ -1,0 +1,14 @@
+!remove Lock = Caps_Lock ! not sure why it doesn't work
+clear Lock
+remove Control = Control_L
+remove Mod1 = Alt_L
+
+! caps becomes control
+keycode 66 = Control_L
+! control_left becomes alt
+keycode 37 = Alt_L
+! alt_left becomes alt_right 
+keycode 64 = ISO_Level3_Shift
+
+add Mod1 = Alt_L
+add Control = Control_L Control_R
