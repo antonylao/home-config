@@ -192,12 +192,12 @@ bindsym $mod+r mode "resize"
 
 #copied from https://github.com/bookercodes/dotfiles/blob/ubuntu/.i3/config
 # TODO: not sure if i keep different bg-color for active and inactive..
-#set $bg-color 	         #a6849a
-set $bg-color 	         #2f343f
+set $bg-color 	         #a6849a
+#set $bg-color 	         #2f343f
 set $inactive-bg-color   #2f343f
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
-set $urgent-bg-color     #E53935
+set $urgent-bg-color     #ed254e
 
 # window colors
 #                       border              background         text                 indicator
@@ -216,6 +216,7 @@ bar {
   # NB: bar height seems to be 10px more than the font size
   position top
   status_command i3status --config $HOME/.config/i3/i3status.conf
+  #status_command i3status 
 
  # status_command i3blocks -c /home/antony/.config/i3/i3blocks.conf
   #666666
