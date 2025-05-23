@@ -26,7 +26,8 @@ function rmd
 end
 
 #set fzf 
-set -Ux FZF_DEFAULT_COMMAND 'rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*, dist/*}"'
+set -x FZF_DEFAULT_COMMAND 'rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*, dist/*}"'
+set -x TERMINAL 'alacritty'
 
 # githm 
 # store files from $HOME in a git repo without it being recognized as a parent repo
