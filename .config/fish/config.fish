@@ -37,6 +37,7 @@ set -Ux FZF_DEFAULT_COMMAND 'rg --files --follow --no-ignore-vcs --hidden -g "!{
 
 # use githm like the git command
 alias githm '/usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
+alias gitprivate '/usr/bin/git --git-dir=$HOME/.home-private.git/ --worktree=$HOME'
 #end githm
 
 # aliases for 

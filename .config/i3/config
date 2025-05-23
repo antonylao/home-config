@@ -290,8 +290,7 @@ exec firefox-esr
 # to find class, use xprop and copy the 2nd item in the list 
 assign [class="firefox-esr"] $ws1
 assign [class="DBeaver"] $ws9
-assign [class="VirtualBox Manager"] $ws10
-
+assign [class="VirtualBox Manager"] $ws6
 
 
 

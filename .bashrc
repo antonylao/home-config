@@ -234,6 +234,7 @@ export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{n
 
 # use githm like the git command
 alias githm='/usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
+githm config --local status.showUntrackedFiles no
 #end githm
 
 # rmd: view markdown file in the lynx browser (running on terminal)
