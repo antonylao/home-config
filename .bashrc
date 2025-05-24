@@ -278,3 +278,26 @@ export BROWSER='/mnt/c/Windows/explorer.exe'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
+
+# startx: simple version
+#if [[ -z $DISPLAY ]] && [[ $(tty) = /dev/tty1 ]]; then
+#  exec startx 
+#fi
+
+#startx: advanced version, using tty8
+# from https://blog.dhampir.no/content/debian-and-ubuntu-auto-login-and-xorg-without-a-display-manager
+#This script will do a few sanity checks, then run Xorg. 
+#If Xorg exits, it will sleep 2 seconds and run it again. 
+#If the script is told to stop, it will change to tty1, then logout of tty8.
+if [ ! -z "${UID:-}" ] && [ "$UID" != "0" ] && [ -z "${DISPLAY}" ] && [ ! -z "${SHLVL:-}" ] && [ "$SHLVL" == "1" ]; then
+    if [ "$(tty)" == "/dev/tty8" ]; then
+        trap "chvt 1; logout" INT TERM EXIT
+        chvt 8
+        while true; do
+            echo "starting xorg"
+            startx
+            echo "sleeping 2 seconds"
+            sleep 2
+        done
+    fi
+fi
