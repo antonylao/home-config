@@ -95,10 +95,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+b split h
+#bindsym $mod+b split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+#bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
@@ -275,12 +275,14 @@ mode "$mode_system" {
 bindsym $mod+BackSpace mode "$mode_system"
 # end shutdown / restart / suspend...
 
+
 #print screen
 bindsym Print exec maim -s | xclip -selection clipboard -t image/png 
 bindsym Shift+Print exec maim ~/Pictures/screens/$(date +%Y-%b-%d--%H-%M-%S).png
 
 # custom
 bindsym $mod+m exec --no-startup-id /home/antony/.config/i3/mails.sh
+bindsym $mod+b exec --no-startup-id /home/antony/.local/bin/bmks
 
 # execs: at startup
 #exec dbeaver
