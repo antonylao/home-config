@@ -6,6 +6,8 @@ PREFERED_LAUNCHER=dmenu
 URL_FILE_PATH=$HOME/.bmks/
 # name of file urls will be stored in
 URL_FILE_NAME=urls
+#others
+BROWSER="librewolf"
 
 show_usage() {
 	printf "bmks: unix bookmark management that sucks less
