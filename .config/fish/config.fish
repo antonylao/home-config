@@ -51,4 +51,7 @@ alias s 'bf save'
 #prompt plugins
 starship init fish | source
 
+    if test (tty) = "/dev/tty8"
+            startx
+    end
 
