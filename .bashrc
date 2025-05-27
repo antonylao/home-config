@@ -271,9 +271,8 @@ export VISUAL=$EDITOR
 # change prompt based on starship config
 eval "$(starship init bash)"
 
-#for using xdg-args to open a browser
 #export BROWSER=lynx
-export BROWSER='/mnt/c/Windows/explorer.exe'
+export BROWSER='librewolf'
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
