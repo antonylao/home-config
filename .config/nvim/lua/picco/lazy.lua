@@ -70,7 +70,7 @@ require("lazy").setup({
 				["vim.lsp.util.stylize_markdown"] = true,
 				["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
 
-				vim.keymap.set("n", "<leader>nd", "<cmd>NoiceDismiss<CR>"),
+				vim.keymap.set("n", "<leader>kn", "<cmd>NoiceDismiss<CR>"),
 			},
 		},
 		dependencies = {

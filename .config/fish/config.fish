@@ -41,6 +41,11 @@ alias githm '/usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
 alias gitprivate '/usr/bin/git --git-dir=$HOME/.home-private.git/ --worktree=$HOME'
 #end githm
 
+#yt-dlp abbr
+abbr yt 'mov-cli -s youtube'
+abbr ytdl 'yt-dlp -P "/home/antony/Videos/yt-dlp" -o "%(upload_date)s.%(id)s.%(title)s" -t mp4'
+abbr '?' 'BROWSER=lynx ddgr'
+
 # aliases for 
 alias d 'bf delete'
 alias g 'bf go'

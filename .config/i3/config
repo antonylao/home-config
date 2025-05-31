@@ -279,20 +279,24 @@ bindsym $mod+BackSpace mode "$mode_system"
 #print screen
 bindsym Print exec maim -s | xclip -selection clipboard -t image/png 
 bindsym Shift+Print exec maim ~/Pictures/screens/$(date +%Y-%b-%d--%H-%M-%S).png
-
+bindsym $mod+Print exec kazam
+# clipboard manager
+bindsym $mod+v exec copyq show  
 # custom
 bindsym $mod+m exec --no-startup-id /home/antony/.config/i3/mails.sh
 bindsym $mod+b exec --no-startup-id /home/antony/.local/bin/bmks
 
 # execs: at startup
 #exec dbeaver
-# use -u to disable unlock indicator
-exec --no-startup-id i3lock -i $wallpaper 
 exec firefox-esr
+exec apidog
+exec dbeaver
+exec copyq
 
 # assign programs to start in specific workspace: 
 # to find class, use xprop and copy the 2nd item in the list 
 assign [class="firefox-esr"] $ws1
-assign [class="DBeaver"] $ws9
+assign [class="apidog"] $ws3
+assign [class="DBeaver"] $ws4
 assign [class="VirtualBox Manager"] $ws6
 
