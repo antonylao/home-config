@@ -28,8 +28,7 @@ require("lazy").setup({
 	"nvim-lua/plenary.nvim",
 
 	"lewis6991/gitsigns.nvim", --gitsigns in gutter
-	"nvim-tree/nvim-web-devicons", --symbols for various plugins
-
+  { "nvim-tree/nvim-web-devicons", opts = {} },
 	--enhanced motion plugins
 	{ "arnamak/stay-centered.nvim", opts = {} },
 	{ import = "picco.plugins.leap" },
