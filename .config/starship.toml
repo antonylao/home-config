@@ -17,6 +17,8 @@ symbol = '-'
 
 [directory]
 style = "blue"
+truncation_length = 4
+truncation_symbol = '../'
 
 [character]
 success_symbol = "[^_^ ❯](purple)"
