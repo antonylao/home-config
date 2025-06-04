@@ -27,6 +27,7 @@ end
 
 #set fzf 
 set -x FZF_DEFAULT_COMMAND 'rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*, dist/*}"'
+fzf --fish | source
 set -x TERMINAL 'alacritty'
 
 # githm 
@@ -37,7 +38,7 @@ set -x TERMINAL 'alacritty'
 # - add a $HOME/.gitignore that ignores everything. When tracking new file, disable it temporarily
 
 # use githm like the git command
-alias githm '/usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
+alias githm '/usr/local/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
 alias gitprivate '/usr/bin/git --git-dir=$HOME/.home-private.git/ --worktree=$HOME'
 #end githm
 

@@ -224,6 +224,7 @@ stty -ixon -ixoff
 
 #set fzf
 export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*, dist/*}"'
+eval "$(fzf --bash)"
 
 # githm
 # store files from $HOME in a git repo without it being recognized as a parent repo
