@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # semi-auto script to start tmux with all relevant windows there, and start the client and server
 #
 # inspired by https://github.com/chicks-net/chicks-home/blob/master/bin/start_tmux#L32C1-L37C4

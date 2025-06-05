@@ -1,12 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # needs user with sudo package
 # supposed home-git cloned in $HOME/home-config
 
 sudo apt install \
-  git mr ripgrep \
-  rsync wget curl gdebi make cmake glibc-source fuse xinit \
-  fish feh i3 firefox-esr alacritty pulseaudio pactl brightnessctl xprop
+  git mr ripgrep sudo \
+  rsync wget curl gdebi make cmake xinit \
+  fish feh mpv i3 i3status dmenu librewolf \
+  alacritty xprop
 
 #explanation of packages
 #mr: to run git commands on multiple repos
@@ -16,13 +17,13 @@ sudo apt install \
 #xprop: to give info about apps (use it to force app to display on a certain workspace)
 #      (use the class)
 #feh: for images
-#??: for videos
+#mpv: for videos
 
 # OPTIONALS: #
 #wine #run exe
 #x11-server-utils #for using xmodmap to remap keys
 #xrandr , arandr #for managing monitors
-
+#mysql_server, mysql_client, uv(replaces pip and pipx)
 # CONFIGURE HOME
 function githm {
   /usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME $@
