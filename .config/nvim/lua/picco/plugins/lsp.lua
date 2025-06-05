@@ -95,9 +95,9 @@ return {
 					--          end
 					if
 						client
-						and client.supports_method(
+						and client:supports_method(
 							vim.lsp.protocol.Methods.textDocument_documentHighlight,
-							{ bufnr = event.buf }
+							event.buf
 						)
 					then
 						local highlight_augroup = vim.api.nvim_create_augroup("multiple-highlight", { clear = false })
@@ -128,9 +128,9 @@ return {
 					-- This may be unwanted, since they displace some of your code
 					if
 						client
-						and client.supports_method(
+						and client:supports_method(
 							vim.lsp.protocol.Methods.textDocument_inlayHint,
-							{ bufnr = event.buf }
+							 event.buf
 						)
 					then
 						vim.keymap.set("n", "<leader>th", function()
