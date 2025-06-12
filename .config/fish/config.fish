@@ -10,7 +10,16 @@ set -x PATH $PATH /opt/nvim/ $HOME/.local/bin
 
 set -x editor nvim
 set -x visual nvim 
- 
+set -x SUDO_EDITOR nvim  
+
+# in cli, i see unicode so I manually change those
+set -x LANG en_US.UTF-8
+set -x LC_ALL en_US.UTF-8
+
+# for using pipewire, we set this env var
+if test -z "$XDG_RUNTIME_DIR"
+    set -gx XDG_RUNTIME_DIR (mktemp -d /tmp/(id -u)-runtime-dir.XXX)
+end
 #safer delete by default
 #TODO: test
 abbr mv 'mv -i' 
@@ -38,8 +47,7 @@ set -x TERMINAL 'alacritty'
 # - add a $HOME/.gitignore that ignores everything. When tracking new file, disable it temporarily
 
 # use githm like the git command
-alias githm '/usr/local/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
-alias gitprivate '/usr/bin/git --git-dir=$HOME/.home-private.git/ --worktree=$HOME'
+alias githm '/usr/bin/git --git-dir=$HOME/.home.git/ --work-tree=$HOME'
 #end githm
 
 #yt-dlp abbr
@@ -57,7 +65,7 @@ alias s 'bf save'
 #prompt plugins
 starship init fish | source
 
-    if test (tty) = "/dev/tty8"
-            startx
-    end
+if test (tty) = "/dev/tty8"
+  startx
+end
 

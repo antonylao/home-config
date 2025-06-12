@@ -301,3 +301,9 @@ if [ ! -z "${UID:-}" ] && [ "$UID" != "0" ] && [ -z "${DISPLAY}" ] && [ ! -z "${
         done
     fi
 fi
+
+
+# for using pipewire, we set global const
+if test -z "$XDG_RUNTIME_DIR"; then
+    export XDG_RUNTIME_DIR=$(mktemp -d /tmp/$(id -u)-runtime-dir.XXX)
+fi

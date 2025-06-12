@@ -9,5 +9,6 @@ numlockx on
 setxkbmap -option numpad:mac
 setxkbmap -layout "fr"
 xmodmap ~/.Xmodmap 
-pulseaudio
-exec i3
+#pulseaudio
+#exec i3
+exec dbus-launch --exit-with-session i3
