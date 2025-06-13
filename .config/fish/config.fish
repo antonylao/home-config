@@ -55,6 +55,8 @@ abbr yt 'mov-cli -s youtube'
 abbr ytdl 'yt-dlp -P "/home/antony/Videos/yt-dlp" -o "%(upload_date)s.%(id)s.%(title)s" -t mp4'
 abbr '?' 'BROWSER=lynx ddgr'
 
+#gentoo abbr
+abbr "editp" "sudoedit /etc/portage/"
 # aliases for 
 alias d 'bf delete'
 alias g 'bf go'
