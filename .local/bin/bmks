@@ -55,7 +55,7 @@ bmks_del() {
 bmks_display() {
 	bmks_check
 	case $PREFERED_LAUNCHER in
-		dmenu) cat $URL_FILE_PATH/$URL_FILE_NAME | sort | dmenu -l $(cat $URL_FILE_PATH/$URL_FILE_NAME | wc -l) | awk '{print $(NF)}' | xargs -I '{}' $BROWSER {} ;;
+		dmenu) cat $URL_FILE_PATH/$URL_FILE_NAME | sort | dmenu -i -l $(cat $URL_FILE_PATH/$URL_FILE_NAME | wc -l) | awk '{print $(NF)}' | xargs -I '{}' $BROWSER {} ;;
 		fzf) cat $URL_FILE_PATH/$URL_FILE_NAME | sort | fzf | awk '{print $(NF)}' | xargs -I '{}' $BROWSER {} ;;
 	esac
 }
