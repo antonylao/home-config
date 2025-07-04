@@ -1,6 +1,10 @@
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set({ "i", "v" }, "kj", "<Esc>")
 
+--curl plugin (can't do it on the config or opt part
+vim.keymap.set("n", "<leader>co", "<cmd>CurlOpen<CR>")
+vim.keymap.set("n", "<leader>cc", "<cmd>CurlClose<CR>")
+
 -- move lines up and down in vmode
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '>-2<CR>gv=gv")

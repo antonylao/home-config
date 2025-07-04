@@ -274,16 +274,17 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -u -i $wallpaper -
 # shutdown / restart / suspend...
 # default exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown
+#set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown
+set $mode_system System (l) lock, (e) logout, (s) shutdown, (r) reboot
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3lock -u -i $wallpaper, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-    bindsym s exec --no-startup-id i3lock -u -i $wallpaper && loginctl suspend, mode "default"
+#    bindsym s exec --no-startup-id i3lock -u -i $wallpaper && loginctl suspend, mode "default"
 #    bindsym r exec --no-startup-id systemctl reboot, mode "default"
 #    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
     bindsym r exec --no-startup-id loginctl reboot 
-    bindsym Ctrl+s exec --no-startup-id loginctl poweroff 
+    bindsym s exec --no-startup-id loginctl poweroff 
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
@@ -306,9 +307,6 @@ bindsym $mod+b exec --no-startup-id /home/antony/.local/bin/bmks
 
 # execs: at startup
 #exec dbeaver
-exec firefox-esr
-exec apidog
-exec dbeaver
 exec copyq
 
 # assign programs to start in specific workspace: 

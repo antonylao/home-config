@@ -28,7 +28,7 @@ require("lazy").setup({
 	"nvim-lua/plenary.nvim",
 
 	"lewis6991/gitsigns.nvim", --gitsigns in gutter
-  { "nvim-tree/nvim-web-devicons", opts = {} },
+	{ "nvim-tree/nvim-web-devicons", opts = {} },
 	--enhanced motion plugins
 	{ "arnamak/stay-centered.nvim", opts = {} },
 	{ import = "picco.plugins.leap" },
@@ -164,6 +164,19 @@ require("lazy").setup({
 		config = function()
 			--gs: get status
 			vim.keymap.set("n", "<leader>gg", vim.cmd.Git)
+		end,
+	},
+
+	{
+		"oysandvik94/curl.nvim",
+		cmd = { "CurlOpen" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = function()
+			local curl = require("curl")
+			curl.setup({})
+			vim.keymap.set("n", "<leader>co", "<cmd>CurlOpen<CR>")
 		end,
 	},
 

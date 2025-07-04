@@ -57,6 +57,22 @@ abbr '?' 'BROWSER=lynx ddgr'
 
 #gentoo abbr
 abbr "editp" "sudoedit /etc/portage/"
+
+#qemu abbr
+abbr "qemu-imgc" "qemu-img create -f qcow2 file.img 32G"
+abbr "qemu-run" "qemu-system-x86_64 \
+    -enable-kvm \
+    -cpu host \
+    -smp 4 \
+    -m 4096 \
+    -boot menu=on \
+    -netdev user,id=net0 -device virtio-net-pci,netdev=net0 \
+    -device virtio-scsi-pci -device scsi-hd,drive=hd0 \
+    -device usb-ehci,id=usb,bus=pci.0 \
+    -device usb-tablet \
+    -vga virtio -display sdl,gl=on \
+    -cdrom .iso -drive file=.img,if=none,id=hd0,cache=writeback"
+
 # aliases for 
 alias d 'bf delete'
 alias g 'bf go'
@@ -67,7 +83,7 @@ alias s 'bf save'
 #prompt plugins
 starship init fish | source
 
-if test (tty) = "/dev/tty8"
+if test (tty) = "/dev/tty1"
   startx
 end
 

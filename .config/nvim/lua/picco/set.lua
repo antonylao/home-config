@@ -1,5 +1,5 @@
+--options can be checked/set with :set optname
 vim.g.mapleader = " "
-
 
 -- keep fat cursor but change color on insert mode
 vim.api.nvim_set_hl(0, "iCursor", { fg = "white", bg = "darkmagenta" })
@@ -20,7 +20,7 @@ vim.opt.expandtab = true
 vim.opt.wrap = true
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 --remove upper tabs showing buffers
 vim.opt.showtabline = 0
@@ -35,10 +35,10 @@ vim.opt.undofile = true
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.api.nvim_create_autocmd('TextYankPost', {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
+vim.api.nvim_create_autocmd("TextYankPost", {
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 vim.opt.termguicolors = true
@@ -51,6 +51,12 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 300
 
 vim.opt.colorcolumn = "80"
-
+-- workaround to set color after this file is processed, doesn't work otherwise
+vim.api.nvim_create_autocmd("BufEnter", {
+	pattern = "*",
+	callback = function()
+		vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#242322" })
+	end,
+})
 -- remove some errors from set of characters present in files
 vim.opt.modeline = false

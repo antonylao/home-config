@@ -1,5 +1,5 @@
 require("picco.set")
 --require("picco.apl-remap")
-require("picco.remap")
 require("picco.lazy")
+require("picco.remap")
 print("/lua/picco/init.lua loaded")
