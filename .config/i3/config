@@ -259,15 +259,17 @@ bindsym $mod+space exec --no-startup-id dmenu_run -i -fn "monospace-13" -nb '$in
 # wallpaper
 # antony ~ 2025-05-19: set to size of screen for simplicity 
 set $wallpaper /home/antony/Pictures/wallpaper-red-sun.png
+set $wallpaper_lock /home/antony/Pictures/wallpaper-red-sun.png
+
 exec_always feh --bg-fill $wallpaper
 
 #SCREEN LOCK
 # setting variable doesn't make exec work..??
 #set $i3lockwall i3lock -i $wallpaper
-bindsym $mod+Shift+x exec --no-startup-id i3lock -u -i $wallpaper 
+bindsym $mod+Shift+x exec --no-startup-id i3lock -u -i $wallpaper_lock
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -u -i $wallpaper --nofork 
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -u -i $wallpaper_lock --nofork 
 #Launch firefox instance that is dedicated to email-browsing 
 # END SCREEN LOCK
 
@@ -275,12 +277,12 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -u -i $wallpaper -
 # default exit i3 (logs you out of your X session)
 #bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 #set $mode_system System (l) lock, (e) logout, (s) suspend, (r) reboot, (CTRL+s) shutdown
-set $mode_system System (l) lock, (e) logout, (s) shutdown, (r) reboot
+set $mode_system System (l) lock, (e) logout, (s) shutdown, (r) reboot, (x) suspend
 
 mode "$mode_system" {
     bindsym l exec --no-startup-id i3lock -u -i $wallpaper, mode "default"
     bindsym e exec --no-startup-id i3-msg exit, mode "default"
-#    bindsym s exec --no-startup-id i3lock -u -i $wallpaper && loginctl suspend, mode "default"
+    bindsym x exec --no-startup-id i3lock -u -i $wallpaper && loginctl suspend, mode "default"
 #    bindsym r exec --no-startup-id systemctl reboot, mode "default"
 #    bindsym Ctrl+s exec --no-startup-id systemctl poweroff -i, mode "default"
     bindsym r exec --no-startup-id loginctl reboot 
